@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>金色を使った開運おみくじ</title>
+
+<style>
+/* ===============================
+   豪華・幸せ・開運おみくじCSS
+   （1ファイル完結）
+================================ */
+
+:root{
+  --bg1:#081027;
+  --bg2:#120826;
+  --gold1:#fff6c7;
+  --gold2:#ffd56a;
+  --gold3:#e6b84c;
+  --gold4:#fff0b5;
+  --text:#ffffff;
+}
+
+html, body{
+  height:100%;
+  margin:0;
+}
+body{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:18px;
+  padding:24px;
+
+  color:var(--text);
+  font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+
+  background:
+    radial-gradient(1100px 700px at 15% 10%, rgba(255, 92, 214, .22), transparent 60%),
+    radial-gradient(900px 650px at 85% 15%, rgba(77, 255, 210, .16), transparent 55%),
+    radial-gradient(1100px 900px at 50% 120%, rgba(255, 216, 120, .12), transparent 60%),
+    linear-gradient(160deg, var(--bg1), var(--bg2));
+  overflow:hidden;
+}
+
+/* ふわふわ光粒子 */
+body::before{
+  content:"";
+  position:fixed;
+  inset:-20%;
+  background:
+    radial-gradient(circle, rgba(255,255,255,.12) 0 2px, transparent 3px) 10px 20px/140px 140px,
+    radial-gradient(circle, rgba(255,215,130,.14) 0 2px, transparent 3px) 60px 40px/180px 180px,
+    radial-gradient(circle, rgba(255,92,214,.10) 0 2px, transparent 3px) 90px 70px/220px 220px;
+  opacity:.75;
+  animation: floatDust 14s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes floatDust{
+  0%{ transform: translate3d(0,0,0); }
+  100%{ transform: translate3d(-80px, 120px, 0); }
+}
+
+/* 結果カード */
+#result{
+  width:min(520px, 92vw);
+  min-height: 170px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size: clamp(44px, 6vw, 70px);
+  font-weight: 900;
+  letter-spacing: .12em;
+
+  background:
+    radial-gradient(900px 260px at 20% 10%, rgba(255,255,255,.10), transparent 60%),
+    radial-gradient(700px 240px at 80% 0%, rgba(255,216,120,.14), transparent 62%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+    linear-gradient(135deg, rgba(20,30,80,.75), rgba(8,12,40,.78));
+
+  border-radius: 26px;
+  border: 1px solid rgba(255,216,120,.45);
+
+  box-shadow:
+    0 18px 70px rgba(0,0,0,.60),
+    0 0 34px rgba(255,216,120,.16),
+    inset 0 1px 0 rgba(255,255,255,.12);
+
+  text-shadow:
+    0 2px 14px rgba(0,0,0,.55),
+    0 0 22px rgba(255,216,120,.28);
+
+  position: relative;
+  overflow: hidden;
+  padding-top: 56px; /* タイトル分 */
+  animation: gentlePulse 5.5s ease-in-out infinite;
+}
+
+/* 金色タイトル */
+#result::before{
+  content:"金色を使った開運おみくじ";
+  position:absolute;
+  top:14px;
+  left:50%;
+  transform:translateX(-50%);
+  white-space:nowrap;
+
+  font-size: clamp(14px, 2.6vw, 18px);
+  font-weight: 800;
+  letter-spacing: .22em;
+
+  background: linear-gradient(120deg, var(--gold1), var(--gold2), var(--gold3), var(--gold4), #d6b35a);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color: transparent;
+
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.45),
+    0 0 12px rgba(255,216,120,.55),
+    0 0 28px rgba(255,216,120,.25);
+
+  animation: goldGlow 4s ease-in-out infinite;
+  pointer-events:none;
+}
+
+/* 光の筋 */
+#result::after{
+  content:"";
+  position:absolute;
+  top:-120%;
+  left:-80%;
+  width:60%;
+  height:320%;
+  transform: rotate(20deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.08),
+    rgba(255,216,120,.16),
+    rgba(255,255,255,.10),
+    transparent
+  );
+  animation: shine 3.6s ease-in-out infinite;
+  pointer-events:none;
+}
+
+/* ボタン */
+button{
+  width:min(520px, 92vw);
+  padding: 14px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,216,120,.55);
+
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  cursor: pointer;
+
+  color:#2b1c00;
+  background:
+    radial-gradient(900px 180px at 20% 25%, rgba(255,255,255,.65), rgba(255,255,255,0) 55%),
+    linear-gradient(135deg, var(--gold1), var(--gold2), var(--gold3));
+
+  box-shadow:
+    0 14px 40px rgba(0,0,0,.45),
+    0 0 26px rgba(255,216,120,.22);
+
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+}
+
+button:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow:
+    0 18px 56px rgba(0,0,0,.50),
+    0 0 34px rgba(255,216,120,.28);
+}
+button:active{
+  transform: translateY(0px) scale(.99);
+  filter: brightness(.98);
+}
+
+/* アニメ */
+@keyframes gentlePulse{
+  0%,100%{ filter: brightness(1); }
+  50%{ filter: brightness(1.08); }
+}
+@keyframes goldGlow{
+  0%{ filter: brightness(1) drop-shadow(0 0 6px rgba(255,216,120,.35)); }
+  50%{ filter: brightness(1.25) drop-shadow(0 0 14px rgba(255,216,120,.65)); }
+  100%{ filter: brightness(1) drop-shadow(0 0 6px rgba(255,216,120,.35)); }
+}
+@keyframes shine{
+  0%, 45%{ transform: translateX(-10%) rotate(20deg); opacity:.0; }
+  55%{ opacity:.9; }
+  100%{ transform: translateX(170%) rotate(20deg); opacity:0; }
+}
+
+/* 動きを抑える */
+@media (prefers-reduced-motion: reduce){
+  body::before, #result, #result::before, #result::after{ animation:none !important; }
+}
+</style>
+</head>
+
+<body>
+  <div id="result">？</div>
+  <button onclick="drawOmikuji()">引く</button>
+
+  <script>
+  function drawOmikuji(){
+    const list = ['大吉','中吉','小吉','末吉','凶'];
+    const pick = list[Math.floor(Math.random()*list.length)];
+    const box = document.getElementById('result');
+    box.textContent = pick; // 背景色やアニメはCSSで
+  }
+  </script>
+</body>
+</html>
